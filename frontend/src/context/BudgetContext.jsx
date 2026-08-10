@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import api from "../api/axios";
 import { useAuth } from "./AuthContext";
+import { DEFAULT_BUDGET_GOAL } from "../constants";
 
 const BudgetContext = createContext();
 
@@ -11,7 +12,7 @@ export function BudgetProvider({ children }) {
     const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [budgetGoal, setBudgetGoal] = useState(() => {
-        return Number(localStorage.getItem("budgetGoal")) || 2000;
+        return Number(localStorage.getItem("budgetGoal")) || DEFAULT_BUDGET_GOAL;
     });
 
     const fetchTransactions = useCallback(async () => {
@@ -24,7 +25,6 @@ export function BudgetProvider({ children }) {
         try {
             setLoading(true);
             const res = await api.get('/transactions');
-            // Mongoose object id is _id, but frontend might expect id
             const formattedTxns = res.data.map(t => ({...t, id: t._id }));
             setTransactions(formattedTxns);
         } catch (err) {

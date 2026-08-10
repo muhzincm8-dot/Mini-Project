@@ -67,7 +67,6 @@ export function AuthProvider({ children }) {
 
     async function updateProfile(data) {
         const res = await api.put('/auth/profile', data);
-        // Refresh from server to get latest state
         setCurrentUser(res.data);
         return res.data;
     }

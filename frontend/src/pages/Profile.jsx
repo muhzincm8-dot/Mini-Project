@@ -7,6 +7,7 @@ import { Input } from "../components/ui/Input";
 import { Modal } from "../components/ui/Modal";
 import { User, LogOut, Shield, Mail, Phone, Camera, Edit2, Check, Download, Lock, Crown, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { downloadTransactionsCSV } from "../services/exportService";
 
 export default function Profile() {
     const { currentUser, logout, updateProfile } = useAuth();
@@ -92,27 +93,7 @@ export default function Profile() {
     };
 
     const handleDataExport = () => {
-        const headers = ["Date", "Description", "Category", "Type", "Amount"];
-        const csvContent = [
-            headers.join(","),
-            ...transactions.map(t => [
-                t.date,
-                `"${t.description?.replace(/"/g, '""')}"`,
-                t.category,
-                t.type,
-                t.amount
-            ].join(","))
-        ].join("\n");
-
-        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.setAttribute("href", url);
-        link.setAttribute("download", `finsight_export_${new Date().toISOString().split('T')[0]}.csv`);
-        link.style.visibility = 'hidden';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        downloadTransactionsCSV(transactions, "finsight_export");
     };
 
     const isPremium = currentUser?.hasPaid;

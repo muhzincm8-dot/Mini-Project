@@ -1,8 +1,8 @@
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from "recharts";
 import { Card } from "../ui/Card";
+import { CHART_COLORS } from "../../constants";
 
 export function SpendingDistribution({ categoryData }) {
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#b026ff', '#ff00ff'];
 
     return (
         <Card>
@@ -22,7 +22,7 @@ export function SpendingDistribution({ categoryData }) {
                                 dataKey="value"
                             >
                                 {categoryData.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="rgba(0,0,0,0)" />
+                                    <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} stroke="rgba(0,0,0,0)" />
                                 ))}
                             </Pie>
                             <Tooltip

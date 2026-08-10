@@ -1,10 +1,5 @@
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
 import { Loader2 } from "lucide-react";
-
-function cn(...inputs) {
-    return twMerge(clsx(inputs));
-}
+import { cn } from "../../utils/cn";
 
 const variants = {
     primary: "bg-neon-blue text-dark-bg hover:bg-[#33f6ff] shadow-[0_0_15px_rgba(0,243,255,0.4)] hover:shadow-[0_0_25px_rgba(0,243,255,0.6)]",

@@ -1,9 +1,9 @@
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from "recharts";
 import { Card } from "../ui/Card";
 import { formatCurrency } from "../../utils/cn";
+import { CHART_COLORS } from "../../constants";
 
 export function SpendingProfile({ spendingData, totalSpending }) {
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#b026ff', '#ff00ff'];
 
     return (
         <Card className="flex flex-col">
@@ -23,7 +23,7 @@ export function SpendingProfile({ spendingData, totalSpending }) {
                                     dataKey="value"
                                 >
                                     {spendingData.map((entry, index) => (
-                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="rgba(0,0,0,0)" />
+                                        <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} stroke="rgba(0,0,0,0)" />
                                     ))}
                                 </Pie>
                                 <Tooltip
@@ -51,7 +51,7 @@ export function SpendingProfile({ spendingData, totalSpending }) {
                             <div className="flex items-center gap-3">
                                 <div
                                     className="w-3 h-3 rounded-full shadow-[0_0_10px_rgba(0,0,0,0.5)]"
-                                    style={{ backgroundColor: COLORS[index % COLORS.length], boxShadow: `0 0 8px ${COLORS[index % COLORS.length]}` }}
+                                    style={{ backgroundColor: CHART_COLORS[index % CHART_COLORS.length], boxShadow: `0 0 8px ${CHART_COLORS[index % CHART_COLORS.length]}` }}
                                 />
                                 <span className="text-gray-300 group-hover:text-white transition-colors">{item.name}</span>
                             </div>

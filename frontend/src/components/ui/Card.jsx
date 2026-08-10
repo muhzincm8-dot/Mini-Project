@@ -1,9 +1,4 @@
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-function cn(...inputs) {
-    return twMerge(clsx(inputs));
-}
+import { cn } from "../../utils/cn";
 
 export function Card({ className, children, ...props }) {
     return (

@@ -3,16 +3,18 @@ import { LayoutDashboard, WalletCards, PieChart, Plus, Menu, X, TrendingUp, User
 import { useState } from "react";
 import { Button } from "../ui/Button";
 import { cn } from "../../utils/cn";
+import { NAV_ITEMS } from "../../constants";
+
+const ICON_MAP = { LayoutDashboard, WalletCards, PieChart };
 
 export function Layout({ children, onAddTransaction }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const location = useLocation();
 
-    const navItems = [
-        { label: "Dashboard", path: "/", icon: LayoutDashboard },
-        { label: "Transactions", path: "/transactions", icon: WalletCards },
-        { label: "Insights", path: "/insights", icon: PieChart },
-    ];
+    const navItems = NAV_ITEMS.map(item => ({
+        ...item,
+        icon: ICON_MAP[item.icon],
+    }));
 
     return (
         <div className="min-h-screen flex flex-col bg-dark-bg text-white font-sans overflow-x-hidden">
@@ -43,7 +45,6 @@ export function Layout({ children, onAddTransaction }) {
                                         : "text-gray-400"
                                 )}
                             >
-                                {/* Optional: Show icon on desktop or just text? Image suggests text primarily, but we can keep standard links */}
                                 {item.label}
                             </Link>
                         ))}

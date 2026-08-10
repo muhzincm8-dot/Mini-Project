@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Card } from "../ui/Card";
 import { formatCurrency, formatDate } from "../../utils/cn";
 
@@ -6,9 +7,9 @@ export function RecentTransactions({ transactions }) {
         <Card className="overflow-hidden p-0">
             <div className="p-6 border-b border-white/5 flex justify-between items-center">
                 <h3 className="text-lg font-bold">Latest Transactions</h3>
-                <button className="text-sm text-neon-blue hover:text-white transition-colors flex items-center gap-1">
+                <Link to="/transactions" className="text-sm text-neon-blue hover:text-white transition-colors flex items-center gap-1">
                     View Full Log <span>&rsaquo;</span>
-                </button>
+                </Link>
             </div>
             <div className="overflow-x-auto">
                 {transactions.length > 0 ? (
